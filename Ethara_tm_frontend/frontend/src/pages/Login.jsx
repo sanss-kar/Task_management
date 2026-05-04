@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import API from "../api/axios";
+import api from "../api/axios";
 
 function Login() {
   const navigate = useNavigate();
@@ -25,14 +25,16 @@ function Login() {
 
  try {
     // 🔐 Step 1: Login
-    const res = await API.post("/auth/login/", formData);
+    // const res = await API.post("/auth/login/", formData);
+   const res = await api.post("/api/auth/login/", formData);
 
     // ✅ Save tokens
     localStorage.setItem("access", res.data.access);
     localStorage.setItem("refresh", res.data.refresh);
 
     // 🔥 Step 2: Fetch profile from backend
-    const profile = await API.get("/auth/profile/");
+    // const profile = await API.get("/auth/profile/");
+   const profile = await api.get("/api/auth/profile/");
 
     // ✅ Save real data (NOT hardcoded)
     localStorage.setItem("username", profile.data.username);
