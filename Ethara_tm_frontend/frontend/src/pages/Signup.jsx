@@ -28,7 +28,7 @@ function Signup() {
     setSuccess("");
 
     try {
-      await API.post("/auth/signup/", formData);
+      await api.post("/api/auth/signup/", formData);
 
       setSuccess("Signup successful! Please login.");
       setTimeout(() => {
