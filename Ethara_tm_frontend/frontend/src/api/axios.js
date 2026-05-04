@@ -1,18 +1,16 @@
+// src/api/axios.js
 import axios from "axios";
 
-
-const API = axios.create({
-    baseURL: "http://127.0.0.1:8000/api",
+const api = axios.create({
+  baseURL: import.meta.env.VITE_API_URL || 'http://localhost:8000',
 });
 
-API.interceptors.request.use((config) => {
+api.interceptors.request.use((config) => {   // ← API → api (lowercase)
     const token = localStorage.getItem("access");
-
     if (token){
         config.headers.Authorization = `Bearer ${token}`;
     }
-
-    return config
+    return config;
 });
 
-export default API;
+export default api;
